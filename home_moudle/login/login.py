@@ -7,6 +7,8 @@ login_url:登陆页面链接
 username:用户名
 password:密码
 '''
+from test_assist.login_mes import login_mes
+
 class Login_web_by_css(object):
     def __init__(self, login_url, username, password):
         self.login_url = login_url
@@ -19,7 +21,7 @@ class Login_web_by_css(object):
         prefs = {'profile.default_content_settings.popups': 0, 'download.default_directory': 'D:\mx_edu_web_selenium'}
         options.add_experimental_option('prefs', prefs)
         #第一次得到返回的浏览器对象,需要关闭防火墙
-        driver = webdriver.Chrome(chrome_options=options)
+        driver = webdriver.Chrome(chrome_options = options)
         driver.maximize_window()
         driver.implicitly_wait(30)
         driver.get(self.login_url)
@@ -47,7 +49,7 @@ class Login_web_by_css(object):
 
 #login模块自测
 if __name__ == '__main__':
-    test_login = Login_web_by_css('http://edu.meetsoon.cn/education/login', '17612031655', '123456')
+    test_login = Login_web_by_css(*login_mes)
     driver = test_login.login(0)
     time.sleep(10)
     driver.quit()
